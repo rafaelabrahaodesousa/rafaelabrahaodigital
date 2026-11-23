@@ -178,6 +178,16 @@
                         </a>
                     </div>
 
+                    <!-- Convite Discreto para Trilha Sonora -->
+                    <div class="pt-1 flex justify-center lg:justify-start">
+                        <button type="button" id="hero-music-trigger" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/30 hover:border-teal-400 text-teal-300 text-xs font-semibold transition-all group">
+                            <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                            <i class="fa-solid fa-headphones text-teal-400"></i>
+                            <span id="hero-music-label">Ativar trilha sonora Cafe Turquesa enquanto navega</span>
+                            <i class="fa-solid fa-play text-[10px] opacity-80 group-hover:translate-x-0.5 transition-transform"></i>
+                        </button>
+                    </div>
+
                     <div class="pt-6 grid grid-cols-3 gap-4 border-t border-dark-border max-w-lg mx-auto lg:mx-0">
                         <div class="text-center lg:text-left">
                             <p class="text-2xl sm:text-3xl font-extrabold text-white">+3.000</p>
@@ -1294,7 +1304,6 @@
                                 <span>YouTube: <strong class="text-slate-200">Cafe Turquesa</strong></span>
                             </a>
                         </li>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -1305,13 +1314,61 @@
         </div>
     </footer>
 
-    <!-- Atalho Flutuante Música Ambiente -->
-    <a href="#cafe-turquesa"
-       aria-label="Ouvir música ambiente Cafe Turquesa"
-       class="fixed bottom-6 left-6 bg-dark-card/95 hover:bg-teal-950/90 text-teal-300 border border-teal-500/40 px-4 py-3 rounded-full shadow-2xl flex items-center gap-2.5 text-xs font-semibold z-50 hover:scale-105 transition-transform duration-300 backdrop-blur-md">
-        <i class="fa-solid fa-mug-hot text-teal-400 text-sm"></i>
-        <span class="hidden sm:inline">Música Ambiente</span>
-    </a>
+    <!-- Mini-Player Flutuante Música Ambiente (Cafe Turquesa) -->
+    <div id="floating-music-widget" class="fixed bottom-6 left-6 z-50 max-w-[calc(100vw-6.5rem)]">
+        <!-- Botão Compacto Inicial -->
+        <button type="button"
+                id="mini-idle-btn"
+                aria-label="Ouvir música ambiente Cafe Turquesa"
+                class="bg-dark-card/95 hover:bg-teal-950/90 text-teal-300 border border-teal-500/40 px-4 py-3 rounded-full shadow-2xl flex items-center gap-2.5 text-xs font-semibold hover:scale-105 transition-transform duration-300 backdrop-blur-md">
+            <i class="fa-solid fa-mug-hot text-teal-400 text-sm"></i>
+            <span class="hidden sm:inline">Música Ambiente</span>
+        </button>
+
+        <!-- Painel Ativo do Mini-Player (Expansível / Minimizável) -->
+        <div id="mini-player-box" class="hidden bg-dark-card/95 border border-teal-500/40 rounded-2xl shadow-2xl backdrop-blur-md overflow-hidden w-72 sm:w-80 transition-all duration-300">
+            <div class="px-3.5 py-2.5 bg-teal-950/40 border-b border-dark-border flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                    <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse shrink-0"></span>
+                    <i class="fa-solid fa-mug-hot text-teal-400 text-xs shrink-0"></i>
+                    <span id="mini-now-playing" class="text-[11px] font-semibold text-teal-200 truncate">Workday Cafe Jazz (1h)</span>
+                </div>
+                <div class="flex items-center gap-1 shrink-0">
+                    <button type="button" id="mini-toggle-size" title="Minimizar / Expandir" aria-label="Minimizar ou expandir mini-player" class="w-6 h-6 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center text-xs transition-colors">
+                        <i id="mini-toggle-icon" class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <button type="button" id="mini-stop-btn" title="Parar e fechar" aria-label="Parar música e fechar player" class="w-6 h-6 rounded-lg hover:bg-rose-500/20 text-slate-300 hover:text-rose-400 flex items-center justify-center text-xs transition-colors">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mini-player-body" class="transition-all duration-300">
+                <div class="aspect-video w-full bg-black">
+                    <iframe id="mini-cafe-player"
+                            class="w-full h-full"
+                            src=""
+                            title="Mini-player Cafe Turquesa"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="p-2.5 bg-dark-base/90 flex items-center justify-between gap-2">
+                    <select id="mini-track-select" aria-label="Selecionar faixa ambiente" class="w-full bg-dark-card text-slate-200 text-[11px] font-medium px-2.5 py-1.5 rounded-lg border border-dark-border focus:outline-none focus:border-teal-400">
+                        <option value="jdof7twiob0">1. Workday Cafe Jazz (1h)</option>
+                        <option value="i62WlJ0nhiw">2. Sunny Morning Cafe Music (1h)</option>
+                        <option value="G5y4RSt9Hj4">3. Good Morning Cafe 2026 (3h)</option>
+                        <option value="h3pQzI_h_dU">4. Lisbon Morning Cafe 2026 (3h)</option>
+                        <option value="-_6XFJ91pFA">5. Easy Morning Cafe Music (1h)</option>
+                    </select>
+                    <a href="#cafe-turquesa" title="Ir para a seção Cafe Turquesa" class="shrink-0 px-2.5 py-1.5 rounded-lg bg-teal-500/15 hover:bg-teal-500/25 text-teal-300 text-[11px] font-semibold transition-colors">
+                        Canal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Botão Flutuante WhatsApp -->
     <a href="https://wa.me/5534999997382?text=Olá,%20Rafael!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20um%20orçamento." 
@@ -1390,14 +1447,143 @@
                 });
             });
 
+            // Controle do Player Principal (#cafe-turquesa) e Mini-Player Flutuante
             var trackBtns = document.querySelectorAll('.track-btn');
             var cafePlayer = document.getElementById('cafe-player');
             var currentTrackLabel = document.getElementById('current-track-label');
+
+            var heroMusicTrigger = document.getElementById('hero-music-trigger');
+            var heroMusicLabel = document.getElementById('hero-music-label');
+            var miniIdleBtn = document.getElementById('mini-idle-btn');
+            var miniPlayerBox = document.getElementById('mini-player-box');
+            var miniPlayerBody = document.getElementById('mini-player-body');
+            var miniCafePlayer = document.getElementById('mini-cafe-player');
+            var miniNowPlaying = document.getElementById('mini-now-playing');
+            var miniTrackSelect = document.getElementById('mini-track-select');
+            var miniToggleSize = document.getElementById('mini-toggle-size');
+            var miniToggleIcon = document.getElementById('mini-toggle-icon');
+            var miniStopBtn = document.getElementById('mini-stop-btn');
+
+            var activeVideoId = 'jdof7twiob0';
+            var activeShortTitle = 'Workday Cafe Jazz (1h)';
+            var isMiniMinimized = false;
+
+            var shortTitlesMap = {
+                'jdof7twiob0': 'Workday Cafe Jazz (1h)',
+                'i62WlJ0nhiw': 'Sunny Morning Cafe Music (1h)',
+                'G5y4RSt9Hj4': 'Good Morning Cafe 2026 (3h)',
+                'h3pQzI_h_dU': 'Lisbon Morning Cafe 2026 (3h)',
+                '-_6XFJ91pFA': 'Easy Morning Cafe Music (1h)'
+            };
+
+            function highlightMainTrackBtn(videoId) {
+                trackBtns.forEach(function(b) {
+                    if (b.getAttribute('data-video-id') === videoId) {
+                        b.classList.remove('bg-dark-card', 'text-slate-300', 'border-dark-border', 'font-medium');
+                        b.classList.add('bg-teal-500/15', 'text-teal-300', 'border-teal-500/40', 'font-semibold');
+                    } else {
+                        b.classList.remove('bg-teal-500/15', 'text-teal-300', 'border-teal-500/40', 'font-semibold');
+                        b.classList.add('bg-dark-card', 'text-slate-300', 'border-dark-border', 'font-medium');
+                    }
+                });
+            }
+
+            function setMiniExpanded(expand) {
+                isMiniMinimized = !expand;
+                if (expand) {
+                    miniPlayerBox.classList.remove('w-60', 'sm:w-64', 'rounded-full');
+                    miniPlayerBox.classList.add('w-72', 'sm:w-80', 'rounded-2xl');
+                    miniPlayerBody.classList.remove('w-0', 'h-0', 'opacity-0', 'overflow-hidden', 'pointer-events-none');
+                    miniToggleIcon.classList.remove('fa-chevron-up');
+                    miniToggleIcon.classList.add('fa-chevron-down');
+                } else {
+                    miniPlayerBox.classList.remove('w-72', 'sm:w-80', 'rounded-2xl');
+                    miniPlayerBox.classList.add('w-60', 'sm:w-64', 'rounded-full');
+                    miniPlayerBody.classList.add('w-0', 'h-0', 'opacity-0', 'overflow-hidden', 'pointer-events-none');
+                    miniToggleIcon.classList.remove('fa-chevron-down');
+                    miniToggleIcon.classList.add('fa-chevron-up');
+                }
+            }
+
+            function startMiniPlayer(videoId) {
+                activeVideoId = videoId || activeVideoId;
+                activeShortTitle = shortTitlesMap[activeVideoId] || 'Cafe Turquesa';
+
+                // Pausa o player grande caso estivesse tocando para evitar áudio duplo
+                if (cafePlayer) {
+                    cafePlayer.src = 'https://www.youtube-nocookie.com/embed/' + activeVideoId + '?rel=0';
+                }
+                highlightMainTrackBtn(activeVideoId);
+
+                if (miniCafePlayer) {
+                    miniCafePlayer.src = 'https://www.youtube-nocookie.com/embed/' + activeVideoId + '?autoplay=1&rel=0';
+                }
+                if (miniNowPlaying) {
+                    miniNowPlaying.textContent = activeShortTitle;
+                }
+                if (miniTrackSelect) {
+                    miniTrackSelect.value = activeVideoId;
+                }
+                if (heroMusicLabel) {
+                    heroMusicLabel.textContent = 'Trilha ativa: ' + activeShortTitle;
+                }
+
+                miniIdleBtn.classList.add('hidden');
+                miniPlayerBox.classList.remove('hidden');
+                setMiniExpanded(true);
+            }
+
+            function stopMiniPlayer() {
+                if (miniCafePlayer) {
+                    miniCafePlayer.src = '';
+                }
+                miniPlayerBox.classList.add('hidden');
+                miniIdleBtn.classList.remove('hidden');
+                if (heroMusicLabel) {
+                    heroMusicLabel.textContent = 'Ativar trilha sonora Cafe Turquesa enquanto navega';
+                }
+            }
+
+            if (heroMusicTrigger) {
+                heroMusicTrigger.addEventListener('click', function() {
+                    startMiniPlayer(activeVideoId);
+                });
+            }
+
+            if (miniIdleBtn) {
+                miniIdleBtn.addEventListener('click', function() {
+                    startMiniPlayer(activeVideoId);
+                });
+            }
+
+            if (miniToggleSize) {
+                miniToggleSize.addEventListener('click', function() {
+                    setMiniExpanded(isMiniMinimized);
+                });
+            }
+
+            if (miniStopBtn) {
+                miniStopBtn.addEventListener('click', function() {
+                    stopMiniPlayer();
+                });
+            }
+
+            if (miniTrackSelect) {
+                miniTrackSelect.addEventListener('change', function() {
+                    startMiniPlayer(this.value);
+                });
+            }
 
             trackBtns.forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     var videoId = this.getAttribute('data-video-id');
                     var trackTitle = this.getAttribute('data-track-title');
+
+                    activeVideoId = videoId;
+                    activeShortTitle = shortTitlesMap[videoId] || 'Cafe Turquesa';
+
+                    // Para o mini-player caso o usuário opte por ouvir direto na seção principal
+                    stopMiniPlayer();
 
                     if (cafePlayer && videoId) {
                         cafePlayer.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0';
@@ -1407,13 +1593,7 @@
                         currentTrackLabel.innerHTML = '<i class="fa-solid fa-volume-high text-teal-400"></i> <span>Tocando agora: <strong class="text-white">' + trackTitle + '</strong></span>';
                     }
 
-                    trackBtns.forEach(function(b) {
-                        b.classList.remove('bg-teal-500/15', 'text-teal-300', 'border-teal-500/40', 'font-semibold');
-                        b.classList.add('bg-dark-card', 'text-slate-300', 'border-dark-border', 'font-medium');
-                    });
-
-                    this.classList.remove('bg-dark-card', 'text-slate-300', 'border-dark-border', 'font-medium');
-                    this.classList.add('bg-teal-500/15', 'text-teal-300', 'border-teal-500/40', 'font-semibold');
+                    highlightMainTrackBtn(videoId);
                 });
             });
         });
